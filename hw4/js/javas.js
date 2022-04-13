@@ -2,46 +2,31 @@
 /////////////////////////////////////////////////////////////////////////
 // Email
 function checkEmail(email) {
-    let c = 0, dot = 0;
-    for (var i = 0; i < email.length - 1; i++) {
-        if (email[i] == '@')
-            c++;
-        if (c > 0 && email[i] == '.')
-            dot = i;
-    }
-    if (dot < email.length && dot != 0) {
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (email.match(validRegex))
         return true;
-    }
-    return false;
+    else
+        return false;
 }
 // id
 function checkId(id) {
     let c = 0, y = 0, sum = 0, p = 0;
     if (id.length != 9)
         return false;
-    c = id;
-    p = parseInt(c % 10, 10);
-    c = c / 10;
-    c = parseInt(c, 10);
-    while (c != 0) {
-        y = (c % 10 * 2);
-        if (y >= 10) {
-            y = (parseInt(y / 10) + y % 10);
-            y = parseInt(y, 10);
+    for (var i = 0; i < 8; i++) {
+        if (i % 2 == 0)
+            sum += parseInt(id[i], 10);
+        else {
+            y = id[i] * 2;
+            if (y >= 10) {
+                y = (parseInt(y / 10) + y % 10);
+                y = parseInt(y, 10);
+            }
+            sum += y;
         }
-        sum += y;
-        c = c / 10;
-        c = parseInt(c, 10);
-        sum += c % 10;
-        sum = parseInt(sum, 10);
-        c = c / 10;
-        c = parseInt(c, 10);
-
     }
-    sum = parseInt(sum, 10);
-    y = 10 - sum % 10;
-    y = parseInt(y, 10);
-    if (y == p)
+    y = 10 - (sum % 10);
+    if (y == id % 10)
         return true;
     return false;
 }
@@ -55,10 +40,19 @@ function checkAge(age) {
 }
 // name
 function checkName(name) {
-    var ap = /^[a-zA-Z]+$/;
-    if(name.match(ap))
+    let arr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    for (var i = 0; i < name.length; i++) {
+        let c = 0;
+        for (var j = 0; j < arr.length; j++) {
+            if (name[i] == arr[j])
+                c++;
+        }
+        if (c == 0)
+            return false;
+    }
+    if (name.length != 0)
         return true;
-    return false;
+    else return false;
 }
 
 // Main 
