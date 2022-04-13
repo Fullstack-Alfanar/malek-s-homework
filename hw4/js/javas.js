@@ -24,7 +24,6 @@ function checkId(id) {
     c = c / 10;
     c = parseInt(c, 10);
     while (c != 0) {
-        console.log(c);
         y = (c % 10 * 2);
         if (y >= 10) {
             y = (parseInt(y / 10) + y % 10);
@@ -38,7 +37,6 @@ function checkId(id) {
         c = c / 10;
         c = parseInt(c, 10);
 
-        console.log(sum);
     }
     sum = parseInt(sum, 10);
     y = 10 - sum % 10;
@@ -57,19 +55,10 @@ function checkAge(age) {
 }
 // name
 function checkName(name) {
-    let arr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    for (var i = 0; i < name.length; i++) {
-        let c = 0;
-        for (var j = 0; j < arr.length; j++) {
-            if (name[i] == arr[j])
-                c++;
-        }
-        if (c == 0)
-            return false;
-    }
-    if (name.length != 0)
+    var ap = /^[a-zA-Z]+$/;
+    if(name.match(ap))
         return true;
-    else return false;
+    return false;
 }
 
 // Main 
