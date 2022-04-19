@@ -40,6 +40,8 @@ function checkAge(age) {
 }
 // name
 function checkName(name) {
+    if (name.length < 3)
+        return false;
     var letters = /^[A-Za-z]+$/;
     if (name.match(letters))
         return true;
