@@ -42,7 +42,31 @@ document.getElementById('myBtn').addEventListener('click', function () {
 });
 
 
+// question 4
+function save() {
+    var aree = [];
+    if (localStorage.getItem("savearr"))
+        aree = JSON.parse(localStorage.getItem("savearr"));
+    let x = document.getElementById('savein');
+    console.log(aree);
+    aree.push(x.value);
+    localStorage.setItem("savearr", JSON.stringify(aree));
+}
 
+function search() {
+
+    let c = -4;
+    aree = JSON.parse(localStorage.getItem("savearr"));
+    let x = document.getElementById('savein');
+    for (let i = 0; i < aree.length; i++) {
+        if (aree[i] == x.value)
+            c = i;
+    }
+    if (c != -4)
+        alert(aree[c]);
+    else
+        alert("not found");
+}
 
 
 
